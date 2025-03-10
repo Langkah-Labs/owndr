@@ -1,91 +1,135 @@
-# Welcome to React Router!
+# Owndr
 
-A modern, production-ready template for building full-stack React applications using React Router.
+An application to show users' reviews of wonderful places in the world. We want genuine and verified reviews!
+So, we build this app for the sake of authenticity.
 
-## Features
+<!-- TOC -->
+* [Owndr](#owndr)
+    * [Technical Decisions](#technical-decisions)
+        * [React Router](#react-router)
+        * [MariaDB and Drizzle ORM](#mariadb-and-drizzle-orm)
+    * [Getting Started](#getting-started)
+        * [Prerequisites](#prerequisites)
+        * [Installation](#installation)
+        * [Development](#development)
+    * [Building for Production](#building-for-production)
+    * [Contributing](#contributing)
+        * [Project Structure](#project-structure)
+        * [Submitting a New Feature](#submitting-a-new-feature)
+            * [Writing Client Code](#writing-client-code)
+            * [Writing Server Code](#writing-server-code)
+        * [Submitting a Pull Request](#submitting-a-pull-request)
+    * [Deployment](#deployment)
+    * [TODO](#todo)
+<!-- TOC -->
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## Technical Decisions
+
+This project aims to make developer ship the Owndr faster and reduce friction between developers to decide tools and libraries.
+Therefore, we empower this starter with these following technologies
+
+- React + React Router v7 as full-stack web framework,
+- Lightweight, server-client and production ready MariaDB database,
+- GitHub Actions for running test and deploy to staging and production environments,
+- Simple but powerful authentication powered-by Remix Auth,
+- Component based email templates with react-mail,
+- Powerful database ORM by drizzle ORM,
+- Styling with Tailwind and shadcn/ui components,
+- Code formatting with Prettier,
+- Linting with ESLint,
+- Type-safe runtime validation with zod
+
+### React Router
+
+In React Router v7, they provide two different options on how we handle the routes within the application, which are framework and library mode.
+The framework mode offers full-featured React framework that can be used as full-stack web framework.
+On the contrary, library mode is a traditional method in the React Router that has been used by many people in the earlier version of this library,
+and it stores the routes declaratively.
+
+Since we want simplicity in our application, in this case, we chose framework mode. It offers several different ways to declare routing, those are a file-based, config-based or the combination of both of them.
+We really want the developers able to work in separate domain features and reduce the conflict when they start working on. So, we enabled the file-based routing by installing `@react-router/fs-routes` and organize the routes based on their features or domains.
+
+### MariaDB and Drizzle ORM
+
+_TBD_
 
 ## Getting Started
 
+### Prerequisites
+
+- Bun
+- MariaDB
+- Docker (optional)
+
 ### Installation
 
-Install the dependencies:
+Install the dependencies
 
 ```bash
-npm install
+bun install
 ```
 
 ### Development
 
-Run an initial database migration:
+Start the development server with HMR
 
 ```bash
-npm run db:migrate
-```
-
-Start the development server with HMR:
-
-```bash
-npm run dev
+bun run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
 
 ## Building for Production
 
-Create a production build:
+Create a production build
 
 ```bash
-npm run build
+bun run build
 ```
+
+## Contributing
+
+### Project Structure
+
+_TBD_
+
+### Submitting a New Feature
+Since we are using React Router v7 which considered as full-stack framework, we now need to consider on how to separate the client and server side code.
+
+#### Writing Client Code
+
+Writing a client component is really simple in React Router, you can just follow [the file route conventions](https://reactrouter.com/how-to/file-route-conventions#escaping-special-characters) and export the default function.
+In this project structure, any files inside the app folder without `.server` suffix, will be marked as client-side code, it is safe for us to use it across the client components.
+
+#### Writing Server Code
+
+Server code is just plain JavaScript/TypeScript source code. It doesn't have fancy things to do, except for handling data through database integration or third-party services.
+In React Router v7, we can just write the logic inside `loader` function and return the data to a React component. However, it considered as impractical because it can tightly coupled the logic and view.
+Therefore, separating the logic as server function from the `loader` will give us flexibility to handle the logic.
+
+Another solution is separating the logic by creating resources routes. In this way, we can also expose it as API routes that can be consumed by another platform, such as a mobile app.
+You can read more detail about resources routes and the pattern to implement it in Kent C. Dodds's article &mdash; [Full Stack Components](https://www.epicweb.dev/full-stack-components).
+
+### Submitting a Pull Request
+
+_TBD_
 
 ## Deployment
 
-Deployment is done using the Wrangler CLI.
+_TBD_
 
-First, you need to create a d1 database in Cloudflare.
+## TODO
 
-```sh
-npx wrangler d1 create <name-of-your-database>
-```
-
-Be sure to update the `wrangler.toml` file with the correct database name and id.
-
-You will also need to [update the `drizzle.config.ts` file](https://orm.drizzle.team/docs/guides/d1-http-with-drizzle-kit), and then run the production migration:
-
-```sh
-npm run db:migrate-production
-```
-
-To build and deploy directly to production:
-
-```sh
-npm run deploy
-```
-
-To deploy a preview URL:
-
-```sh
-npx wrangler versions upload
-```
-
-You can then promote a version to production after verification or roll it out progressively.
-
-```sh
-npx wrangler versions deploy
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+- [ ] Add testing libraries,
+- [ ] Write an ERD for structuring the data,
+- [x] Setup authentication and integrate with Google Signin using [remix-auth](https://github.com/sergiodxa/remix-auth),
+- [ ] Setup [cachified](https://github.com/epicweb-dev/cachified) for handle caches,
+- [x] Add [conform](https://conform.guide/) as form helper,
+- [ ] Setup GitHub Actions with the following specifications
+    - [ ] Run unit and integration tests along with linter when contributors start creating pull request,
+    - [ ] Create separate workflow to push the code into CloudFlare pages.
+- [ ] Protect `main` branch and add one mandatory reviewer in the pull request,
+- [ ] Setup [react-mail](https://react.mail) and [Nodemailer](https://nodemailer.com/) libraries for handling emails,
+- [x] Create a CRUD sample to demonstrate the data flow pattern within the application.
+- [x] Setup CloudFlare infrastructure,
+- [ ] Setup deployment

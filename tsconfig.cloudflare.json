@@ -5,7 +5,7 @@
     "app/**/*",
     "app/**/.server/**/*",
     "app/**/.client/**/*",
-    "database/**/*",
+    "db/**/*",
     "workers/**/*",
     "load-context.ts",
     "worker-configuration.d.ts"
@@ -14,7 +14,7 @@
     "composite": true,
     "strict": true,
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "types": ["@cloudflare/workers-types", "node", "vite/client"],
+    "types": ["@cloudflare/workers-types", "node", "vite/client", "bun"],
     "target": "ES2022",
     "module": "ES2022",
     "moduleResolution": "bundler",
@@ -22,10 +22,11 @@
     "baseUrl": ".",
     "rootDirs": [".", "./.react-router/types"],
     "paths": {
-      "~/database/*": ["./database/*"],
+      "~/db/*": ["./db/*"],
       "~/*": ["./app/*"]
     },
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true
   }
 }
