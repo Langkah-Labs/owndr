@@ -1,12 +1,50 @@
 import type { Route } from './+types/route'
 import * as React from 'react'
 import { Await, Link, href, useOutletContext } from 'react-router'
+import { DataTable } from '~/components/data-table'
+import { Button } from '~/components/ui/button'
+import { PlusIcon } from 'lucide-react'
+import { columns } from '~/routes/users._index/columns'
+import { authenticate } from '~/lib/auth.server'
+import { getUsers } from './get-users.server'
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: 'Users | Owndr' },
     { name: 'description', content: 'Manage users in the Owndr application' },
   ]
+}
+
+/**
+ * This loader function runs on the server. It's safe to call any server actions here,
+ * such as calling authenticate function like in the body function below.
+ */
+export async function loader({ context, params, request }: Route.LoaderArgs) {
+  // This is necessary data because we use the value immediately after authenticate function called.
+  // Since this is HIGH PRIORITY data, me must mark it with await to make sure the data was returned and
+  // can be used in the further processing.
+  const currentUser = await authenticate(request)
+
+  // This line of code doesn't mark with await, because it's less priority data.
+  // We can defer this data in this loader and show it lazily.
+  // React Suspense component helps us to lazily load this data and show the loading component to the client-side.
+  const users = getUsers(context, currentUser)
+
+  return {
+    currentUser,
+    users,
+  }
+}
+
+function TableAction() {
+  return (
+    <Button asChild className="h-8">
+      <Link to={href('/users/new')}>
+        <PlusIcon />
+        New User
+      </Link>
+    </Button>
+  )
 }
 
 export default function Page({ loaderData }: Route.ComponentProps) {
@@ -22,6 +60,18 @@ export default function Page({ loaderData }: Route.ComponentProps) {
           Effortlessly manage users and permissions.
         </h2>
       </header>
+
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <Await resolve={loaderData.users}>
+          {(value) => (
+            <DataTable
+              columns={columns}
+              data={value}
+              actions={<TableAction />}
+            />
+          )}
+        </Await>
+      </React.Suspense>
     </div>
   )
 }
