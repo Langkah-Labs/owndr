@@ -20,7 +20,7 @@ export default function Page({ loaderData }: Route.ComponentProps) {
               <CardDescription>Login your Google account</CardDescription>
             </CardHeader>
             <CardContent>
-              <Form action={href('/signin/google')}>
+              <Form action={href('/signin/:provider', { provider: 'google' })}>
                 <Button variant="outline" className="w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
