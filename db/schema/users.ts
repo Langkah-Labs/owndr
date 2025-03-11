@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm'
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { blob, integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import {
   createSelectSchema,
   createInsertSchema,
@@ -14,10 +14,15 @@ export const users = sqliteTable('users', {
   email: text().notNull().unique(),
   avatar: text(),
   location: text(),
+  totalPosts: integer().default(0),
+  totalReactions: blob({ mode: 'bigint' }).default(sql`(0)`),
+  profileScore: real().default(0),
+  preferredLanguage: text(), // relation to languages table
   createdAt: text()
     .notNull()
     .default(sql`(current_timestamp)`),
   updatedAt: text(),
+  deletedAt: text(),
 })
 
 export const userSelectSchema = createSelectSchema(users).merge(

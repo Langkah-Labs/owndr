@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { userInsertSchema, users } from 'db/schema'
+import { userInsertSchema, users } from '~/db/schema'
 import { type AppLoadContext } from 'react-router'
 
 export default async function createUser(

@@ -1,6 +1,5 @@
 import type { Route } from './+types/route'
 import { Outlet } from 'react-router'
-import * as React from 'react'
 import { Navbar } from '~/components/navbar'
 import { authenticate, type SessionUser } from '~/lib/auth.server'
 
