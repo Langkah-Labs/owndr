@@ -1,4 +1,8 @@
 pre-commit:
-  jobs:
-    - name: typecheck
+  parallel: true
+  commands:
+    prettier:
+      run: bunx pretty-quick --staged --ignore-path .gitignore
+
+    typecheck:
       run: bun run typecheck

@@ -1,12 +1,21 @@
 import type { Route } from './+types/route'
 import { redirect } from 'react-router'
 import { authenticator, saveSession } from '~/lib/auth.server'
+import saveUser from './save-user.server'
 
-export async function loader({ request, params }: Route.LoaderArgs) {
+export async function loader({ request, params, context }: Route.LoaderArgs) {
   const user = await authenticator.authenticate(params.provider, request)
 
-  // TODO: do some db insertion after getting user data from the providers
-  const headers = await saveSession(request, user)
+  const savedUser = await saveUser(context, user)
+
+  if (!savedUser) throw new Response('Unauthorized', { status: 401 })
+
+  const headers = await saveSession(request, {
+    id: savedUser.id,
+    email: savedUser.email,
+    displayName: savedUser.firstName,
+    pictureUrl: savedUser.avatar ?? '',
+  })
 
   return redirect('/', { headers })
 }
