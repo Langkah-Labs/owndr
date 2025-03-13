@@ -237,3 +237,5 @@ tmp/*
 # Cloudflare
 .mf
 .wrangler
+
+.dev.vars

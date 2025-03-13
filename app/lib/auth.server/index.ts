@@ -7,6 +7,7 @@ import {
   saveSession,
   deleteSession,
   authenticate,
+  SESSION_KEY,
 } from './session'
 import {
   GoogleStrategyDefaultName,
@@ -44,4 +45,5 @@ export {
   getSessionUser,
   authenticate,
   GoogleStrategyDefaultName,
+  SESSION_KEY,
 }

@@ -15,7 +15,6 @@ export default defineConfig(({ isSsrBuild }) => ({
   },
   ssr: {
     target: 'webworker',
-    noExternal: true,
     resolve: {
       conditions: ['workerd', 'browser'],
     },

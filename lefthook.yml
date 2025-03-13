@@ -2,3 +2,6 @@ pre-commit:
   jobs:
     - name: typecheck
       run: bun run typecheck
+
+    - name: format code
+      run: bun run prettier --write .

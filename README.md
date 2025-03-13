@@ -128,7 +128,7 @@ _TBD_
 - [ ] Setup GitHub Actions with the following specifications
     - [ ] Run unit and integration tests along with linter when contributors start creating pull request,
     - [ ] Create separate workflow to push the code into CloudFlare pages.
-- [ ] Protect `main` branch and add one mandatory reviewer in the pull request,
+- [x] Protect `main` branch and add one mandatory reviewer in the pull request,
 - [ ] Setup [react-mail](https://react.mail) and [Nodemailer](https://nodemailer.com/) libraries for handling emails,
 - [x] Create a CRUD sample to demonstrate the data flow pattern within the application.
 - [x] Setup CloudFlare infrastructure,

@@ -1,3 +1,4 @@
+import { env } from 'node:process'
 import { createCookieSessionStorage, redirect, href } from 'react-router'
 
 export type SessionUser = {
@@ -7,7 +8,7 @@ export type SessionUser = {
   pictureUrl: string
 }
 
-const SESSION_KEY = 'user'
+export const SESSION_KEY = 'user'
 
 export const sessionStorage = createCookieSessionStorage<{
   [SESSION_KEY]: SessionUser
@@ -17,8 +18,8 @@ export const sessionStorage = createCookieSessionStorage<{
     httpOnly: true,
     path: '/',
     sameSite: 'lax',
-    secrets: [process.env.SESSION_SECRET!],
-    secure: process.env.NODE_ENV === 'production',
+    secrets: [env.SESSION_SECRET!],
+    secure: env.NODE_ENV === 'production',
   },
 })
 
