@@ -1,4 +1,4 @@
-import { sql } from 'drizzle-orm'
+import { sql, relations } from 'drizzle-orm'
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
 
 export const destinations = sqliteTable('destinations', {
@@ -15,6 +15,13 @@ export const destinations = sqliteTable('destinations', {
   deletedAt: text(),
 })
 
+export const destinationsRelations = relations(destinations, ({ one }) => ({
+  categories: one(destinationCategories, {
+    fields: [destinations.categoryId],
+    references: [destinationCategories.id],
+  }),
+}))
+
 export const destinationCategories = sqliteTable('destination_categories', {
   id: text().primaryKey(),
   name: text().notNull(),
@@ -25,3 +32,10 @@ export const destinationCategories = sqliteTable('destination_categories', {
   updatedAt: text(),
   deletedAt: text(),
 })
+
+export const destinationsCategoriesRelations = relations(
+  destinationCategories,
+  ({ many }) => ({
+    destinations: many(destinations),
+  })
+)

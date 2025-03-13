@@ -1,5 +1,7 @@
-import { sql } from 'drizzle-orm'
+import { sql, relations } from 'drizzle-orm'
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { postTranslations } from './posts'
+import { users } from './users'
 
 export const languages = sqliteTable('languages', {
   id: text().primaryKey(),
@@ -12,3 +14,8 @@ export const languages = sqliteTable('languages', {
   updatedAt: text(),
   deleteAt: text(),
 })
+
+export const languagesRelations = relations(languages, ({ many }) => ({
+  postTranslations: many(postTranslations),
+  users: many(users),
+}))

@@ -1,4 +1,4 @@
-import { sql } from 'drizzle-orm'
+import { sql, relations } from 'drizzle-orm'
 import { blob, integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import {
   createSelectSchema,
@@ -6,6 +6,7 @@ import {
   createUpdateSchema,
 } from 'drizzle-zod'
 import { z } from 'zod'
+import { languages } from './languages'
 
 export const users = sqliteTable('users', {
   id: text().primaryKey(),
@@ -17,13 +18,20 @@ export const users = sqliteTable('users', {
   totalPosts: integer().default(0),
   totalReactions: blob({ mode: 'bigint' }).default(sql`(0)`),
   profileScore: real().default(0),
-  preferredLanguage: text(), // relation to languages table
+  preferredLanguageId: text(), // relation to languages table
   createdAt: text()
     .notNull()
     .default(sql`(current_timestamp)`),
   updatedAt: text(),
   deletedAt: text(),
 })
+
+export const usersRelations = relations(users, ({ one }) => ({
+  preferredLanguage: one(languages, {
+    fields: [users.preferredLanguageId],
+    references: [languages.id],
+  }),
+}))
 
 export const userSelectSchema = createSelectSchema(users).merge(
   z.object({
