@@ -4,24 +4,25 @@ An application to show users' reviews of wonderful places in the world. We want 
 So, we build this app for the sake of authenticity.
 
 <!-- TOC -->
-* [Owndr](#owndr)
-  * [Technical Decisions](#technical-decisions)
-    * [React Router](#react-router)
-    * [MariaDB and Drizzle ORM](#mariadb-and-drizzle-orm)
-  * [Getting Started](#getting-started)
-    * [Prerequisites](#prerequisites)
-    * [Installation](#installation)
-    * [Development](#development)
-  * [Building for Production](#building-for-production)
-  * [Contributing](#contributing)
-    * [Project Structure](#project-structure)
-    * [Submitting a New Feature](#submitting-a-new-feature)
-      * [Writing Client Code](#writing-client-code)
-      * [Writing Server Code](#writing-server-code)
-    * [Submitting a Pull Request](#submitting-a-pull-request)
-  * [Deployment](#deployment)
-  * [TODO](#todo)
-<!-- TOC -->
+
+- [Owndr](#owndr)
+  - [Technical Decisions](#technical-decisions)
+    - [React Router](#react-router)
+    - [MariaDB and Drizzle ORM](#mariadb-and-drizzle-orm)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Development](#development)
+  - [Building for Production](#building-for-production)
+  - [Contributing](#contributing)
+    - [Project Structure](#project-structure)
+    - [Submitting a New Feature](#submitting-a-new-feature)
+      - [Writing Client Code](#writing-client-code)
+      - [Writing Server Code](#writing-server-code)
+    - [Submitting a Pull Request](#submitting-a-pull-request)
+  - [Deployment](#deployment)
+  - [TODO](#todo)
+  <!-- TOC -->
 
 ## Technical Decisions
 
@@ -94,6 +95,7 @@ bun run build
 _TBD_
 
 ### Submitting a New Feature
+
 Since we are using React Router v7 which considered as full-stack framework, we now need to consider on how to separate the client and server side code.
 
 #### Writing Client Code
@@ -126,8 +128,8 @@ _TBD_
 - [ ] Setup [cachified](https://github.com/epicweb-dev/cachified) for handle caches,
 - [x] Add [conform](https://conform.guide/) as form helper,
 - [ ] Setup GitHub Actions with the following specifications
-    - [ ] Run unit and integration tests along with linter when contributors start creating pull request,
-    - [ ] Create separate workflow to push the code into CloudFlare pages.
+  - [ ] Run unit and integration tests along with linter when contributors start creating pull request,
+  - [ ] Create separate workflow to push the code into CloudFlare pages.
 - [x] Protect `main` branch and add one mandatory reviewer in the pull request,
 - [ ] Setup [react-mail](https://react.mail) and [Nodemailer](https://nodemailer.com/) libraries for handling emails,
 - [x] Create a CRUD sample to demonstrate the data flow pattern within the application.
