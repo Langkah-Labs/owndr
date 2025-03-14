@@ -5,7 +5,7 @@ export const destinations = sqliteTable('destinations', {
   id: text().primaryKey(),
   name: text(),
   thumbnail: text(),
-  categoryId: text(),
+  categoryId: text().references(() => destinationCategories.id),
   latitude: text(),
   longitude: text(),
   createdAt: text()

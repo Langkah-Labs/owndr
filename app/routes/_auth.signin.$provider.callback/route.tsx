@@ -8,8 +8,6 @@ export async function loader({ request, params, context }: Route.LoaderArgs) {
 
   const savedUser = await saveUser(context, user)
 
-  if (!savedUser) throw new Response('Unauthorized', { status: 401 })
-
   const headers = await saveSession(request, {
     id: savedUser.id,
     email: savedUser.email,

@@ -23,10 +23,18 @@ import {
   DialogTrigger,
   DialogClose,
 } from '~/components/ui/dialog'
-import { userSelectSchema } from 'db/schema'
-import { z } from 'zod'
 
-export const columns: ColumnDef<z.infer<typeof userSelectSchema>>[] = [
+type UserColumn = {
+  id: string
+  firstName: string
+  lastName: string | null
+  email: string
+  me: boolean
+  createdAt: string
+  updatedAt: string | null
+}
+
+export const columns: ColumnDef<UserColumn>[] = [
   {
     id: 'select',
     header: ({ table }) => (

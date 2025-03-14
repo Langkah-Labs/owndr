@@ -9,11 +9,19 @@ export const posts = sqliteTable('posts', {
   title: text(),
   body: text(),
   informationScore: real().default(0),
-  totalReactions: blob({ mode: 'bigint' }).default(sql`(0)`),
-  totalThumbsUp: blob({ mode: 'bigint' }).default(sql`(0)`),
-  totalThumbsDown: blob({ mode: 'bigint' }).default(sql`(0)`),
+  totalReactions: blob({ mode: 'bigint' })
+    .$type<BigInt>()
+    .default(sql`(0)`),
+  totalThumbsUp: blob({ mode: 'bigint' })
+    .$type<BigInt>()
+    .default(sql`(0)`),
+  totalThumbsDown: blob({ mode: 'bigint' })
+    .$type<BigInt>()
+    .default(sql`(0)`),
   slug: text(),
-  userId: text().notNull(),
+  userId: text()
+    .notNull()
+    .references(() => users.id),
   destinationId: text().notNull(),
   createdAt: text()
     .notNull()
@@ -41,8 +49,8 @@ export const postAttachments = sqliteTable('post_attachments', {
   id: text().primaryKey(),
   filename: text(),
   contentType: text(),
-  size: blob({ mode: 'bigint' }),
-  postId: text(),
+  size: blob({ mode: 'bigint' }).$type<BigInt>(),
+  postId: text().references(() => posts.id),
   createdAt: text()
     .notNull()
     .default(sql`(current_timestamp)`),
@@ -64,8 +72,12 @@ export const postTranslations = sqliteTable('post_translations', {
   id: text().primaryKey(),
   title: text(),
   body: text(),
-  postId: text().notNull(),
-  languageId: text().notNull(),
+  postId: text()
+    .notNull()
+    .references(() => posts.id),
+  languageId: text()
+    .notNull()
+    .references(() => languages.id),
   createdAt: text()
     .notNull()
     .default(sql`(current_timestamp)`),
@@ -89,8 +101,12 @@ export const postTranslationsRelations = relations(
 
 export const postReactions = sqliteTable('post_reactions', {
   id: text().primaryKey(),
-  postId: text().notNull(),
-  userId: text().notNull(),
+  postId: text()
+    .notNull()
+    .references(() => posts.id),
+  userId: text()
+    .notNull()
+    .references(() => users.id),
   type: text(),
   createdAt: text()
     .notNull()
@@ -113,8 +129,12 @@ export const postReactionsRelations = relations(postReactions, ({ one }) => ({
 export const comments = sqliteTable('comments', {
   id: text().primaryKey(),
   body: text(),
-  userId: text().notNull(),
-  postId: text().notNull(),
+  userId: text()
+    .notNull()
+    .references(() => users.id),
+  postId: text()
+    .notNull()
+    .references(() => posts.id),
   createdAt: text()
     .notNull()
     .default(sql`(current_timestamp)`),

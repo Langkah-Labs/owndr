@@ -14,12 +14,13 @@ import {
   GoogleStrategy,
 } from '~/lib/auth.server/providers/google'
 import { type OAuth2Strategy } from 'remix-auth-oauth2'
+import { env } from 'node:process'
 
 const googleStrategy = new GoogleStrategy<SessionUser>(
   {
-    clientId: process.env.GOOGLE_CLIENT_ID!,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    redirectURI: process.env.GOOGLE_REDIRECT_URI!,
+    clientId: env.GOOGLE_CLIENT_ID!,
+    clientSecret: env.GOOGLE_CLIENT_SECRET!,
+    redirectURI: env.GOOGLE_REDIRECT_URI!,
   },
   async ({ tokens }: OAuth2Strategy.VerifyOptions): Promise<SessionUser> => {
     const profile = await GoogleStrategy.userProfile(tokens)

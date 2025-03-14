@@ -16,9 +16,11 @@ export const users = sqliteTable('users', {
   avatar: text(),
   location: text(),
   totalPosts: integer().default(0),
-  totalReactions: blob({ mode: 'bigint' }).default(sql`(0)`),
+  totalReactions: blob({ mode: 'bigint' })
+    .$type<number>()
+    .default(sql`(0)`),
   profileScore: real().default(0),
-  preferredLanguageId: text(), // relation to languages table
+  preferredLanguageId: text().references(() => languages.id),
   createdAt: text()
     .notNull()
     .default(sql`(current_timestamp)`),

@@ -1,19 +1,28 @@
+import { eq } from 'drizzle-orm'
 import type { AppLoadContext } from 'react-router'
 import type { SessionUser } from '~/lib/auth.server'
 import { users } from '~/db/schema'
+import { ulid } from 'ulid'
 
 export default async function saveUser(
   context: AppLoadContext,
   user: SessionUser
 ) {
-  const existingUser = await context.db.query.users.findFirst({
-    where: (users, { eq }) => eq(users.email, user.email),
-  })
+  const existingUsers = await context.db
+    .select({
+      id: users.id,
+      firstName: users.firstName,
+      email: users.email,
+      avatar: users.avatar,
+    })
+    .from(users)
+    .where(eq(users.email, user.email))
+    .limit(1)
 
-  if (!existingUser) {
-    const id = Bun.randomUUIDv7()
+  if (existingUsers.length === 0) {
+    const id = ulid()
 
-    const insertedUser = await context.db
+    return context.db
       .insert(users)
       .values({
         id,
@@ -21,12 +30,14 @@ export default async function saveUser(
         email: user.email,
         avatar: user.pictureUrl,
       })
-      .returning()
-
-    if (insertedUser.length === 0) return null
-
-    return insertedUser[0]
+      .returning({
+        id: users.id,
+        firstName: users.firstName,
+        email: users.email,
+        avatar: users.avatar,
+      })
+      .get()
   }
 
-  return existingUser
+  return existingUsers[0]
 }
