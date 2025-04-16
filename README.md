@@ -16,6 +16,7 @@ So, we build this app for the sake of authenticity.
   - [Building for Production](#building-for-production)
   - [Contributing](#contributing)
     - [Project Structure](#project-structure)
+    - [File Naming Convention](#file-naming-convention)
     - [Submitting a New Feature](#submitting-a-new-feature)
       - [Writing Client Code](#writing-client-code)
       - [Writing Server Code](#writing-server-code)
@@ -58,16 +59,16 @@ _TBD_
 
 ### Prerequisites
 
-- Bun
-- MariaDB
-- Docker (optional)
+- Node
+- pnpm
+- Wrangler CLI
 
 ### Installation
 
 Install the dependencies
 
 ```bash
-bun install
+pnpm install
 ```
 
 ### Development
@@ -75,7 +76,7 @@ bun install
 Start the development server with HMR
 
 ```bash
-bun run dev
+pnpm run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
@@ -85,7 +86,7 @@ Your application will be available at `http://localhost:5173`.
 Create a production build
 
 ```bash
-bun run build
+pnpm run build
 ```
 
 ## Contributing
@@ -93,6 +94,10 @@ bun run build
 ### Project Structure
 
 _TBD_
+
+### File Naming Convention
+
+Due to the flexibility of JavaScript-based application, there are no restrictions to write a name on the file. Therefore, to prevent inconsistencies among the other files and the base ui components, preferably to write using kebab-case. Everything should be lowecase first, and if the name consists of multiple words, concat the words using hypen (-) and keep the name lowecase. This naming was chosen because the readablity of the filename. In contrast of the PascalCase or camelCase, both of those less readable because there are no spaces among the words if there are multiple words on it.
 
 ### Submitting a New Feature
 
@@ -114,7 +119,9 @@ You can read more detail about resources routes and the pattern to implement it 
 
 ### Submitting a Pull Request
 
-_TBD_
+Since the `main` branch is protected, we can't push directly to that branch. Each developers should send their contribution through GitHub's pull request and fill the proper description on the text box. We will provide the pull request template and developers can use it as references what is the minimum information that they should give to the maintainer.
+
+Each pull request should have single approval at minimum to be able to merge to the `main` branch. There will be an exception for the maintainer, they can bypass the rules and merge the pull request directly without approval. This will make them to be able to configure the repository properly, such as adding Actions or any configuration files.
 
 ## Deployment
 
