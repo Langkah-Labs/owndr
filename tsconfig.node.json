@@ -1,20 +1,13 @@
 {
   "extends": "./tsconfig.json",
-  "include": [
-    "tailwind.config.ts",
-    "vite.config.ts",
-    "db/**/*",
-    "load-context.ts",
-    "worker-configuration.d.ts"
-  ],
+  "include": ["tailwind.config.ts", "vite.config.ts"],
   "compilerOptions": {
     "composite": true,
     "strict": true,
-    "types": ["node", "bun"],
+    "types": ["node"],
     "lib": ["ES2022"],
     "target": "ES2022",
     "module": "ES2022",
-    "moduleResolution": "bundler",
-    "verbatimModuleSyntax": true
+    "moduleResolution": "bundler"
   }
 }

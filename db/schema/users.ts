@@ -1,29 +1,21 @@
-import { sql, relations } from 'drizzle-orm'
+import { sql, relations, type InferSelectModel } from 'drizzle-orm'
 import { blob, integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
-import {
-  createSelectSchema,
-  createInsertSchema,
-  createUpdateSchema,
-} from 'drizzle-zod'
-import { z } from 'zod'
 import { languages } from './languages'
 
 export const users = sqliteTable('users', {
-  id: text().primaryKey(),
-  firstName: text().notNull(),
-  lastName: text(),
-  email: text().notNull().unique(),
-  avatar: text(),
-  location: text(),
-  totalPosts: integer().default(0),
-  totalReactions: blob({ mode: 'bigint' }).default(sql`(0)`),
-  profileScore: real().default(0),
-  preferredLanguageId: text(), // relation to languages table
-  createdAt: text()
-    .notNull()
-    .default(sql`(current_timestamp)`),
-  updatedAt: text(),
-  deletedAt: text(),
+  id: text('id').primaryKey().notNull(),
+  firstName: text('first_name').notNull(),
+  lastName: text('last_name'),
+  email: text('email').notNull().unique(),
+  avatar: text('avatar'),
+  location: text('location'),
+  totalPosts: integer('total_posts').default(0),
+  totalReactions: blob('total_reactions', { mode: 'bigint' }).default(sql`(0)`),
+  profileScore: real('profile_score').default(0),
+  preferredLanguageId: text('preferred_language_id'), // relation to languages table
+  createdAt: text('created_at').default(sql`(current_timestamp)`),
+  updatedAt: text('updated_at'),
+  deletedAt: text('deleted_at'),
 })
 
 export const usersRelations = relations(users, ({ one }) => ({
@@ -33,23 +25,18 @@ export const usersRelations = relations(users, ({ one }) => ({
   }),
 }))
 
-export const userSelectSchema = createSelectSchema(users).merge(
-  z.object({
-    me: z.boolean().optional().default(false),
-  })
-)
-
-export const userInsertSchema = createInsertSchema(users, {
-  firstName: (schema) => {
-    return schema.min(2, {
-      message: 'First name must be at least 2 characters.',
-    })
-  },
-  email: (schema) => {
-    return schema.email({
-      message: 'Please enter a valid email address.',
-    })
-  },
+export const sessions = sqliteTable('sessions', {
+  id: text('id').primaryKey().notNull(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => users.id),
+  expiresAt: integer('expires_at', {
+    mode: 'timestamp',
+  }).notNull(),
+  createdAt: text('created_at').default(sql`(current_timestamp)`),
+  updatedAt: text('updated_at'),
+  deletedAt: text('deleted_at'),
 })
 
-export const userUpdateSchema = createUpdateSchema(users)
+export type User = InferSelectModel<typeof users>
+export type Session = InferSelectModel<typeof sessions>
