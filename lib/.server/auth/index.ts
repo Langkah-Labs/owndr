@@ -1,7 +1,7 @@
 namespace Authentication {
   type User = {
     name?: string
-    email?: string
+    email: string
     email_verified?: string
     picture?: string
   }
@@ -34,21 +34,26 @@ namespace Authentication {
 
   export class Google implements Strategy {
     private tokenUrl = 'https://oauth2.googleapis.com/token'
-    private profileUrl = 'https://www.googleapis.com/oauth2/v3/userinfo'
+    private profileUrl = 'https://www.googleapis.com/userinfo/v2/me'
 
     constructor(private opts: Options = {}) {}
 
     private async getProfile(token: string): Promise<User> {
+      const headers = {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      }
       const response = await fetch(this.profileUrl, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers,
       })
 
       if (response.status !== 200) {
         // TODO: change to proper logging
         const body = await response.json()
-        console.log(`Error when fetching user profile: ${body}`)
+        console.log({
+          message: 'Error when fetching user profile',
+          data: body,
+        })
 
         throw new AuthorizationException('Error when fetching user profile')
       }
@@ -89,7 +94,10 @@ namespace Authentication {
       if (response.status !== 200) {
         // TODO: replace with proper logging
         const body = await response.json()
-        console.log(`Error when fetching data to Google APIs: ${body}`)
+        console.log({
+          message: 'Error when fetching data to Google APIs',
+          data: body,
+        })
 
         throw new AuthorizationException(
           'Error when fetching data to Google APIs'
@@ -97,8 +105,7 @@ namespace Authentication {
       }
 
       const json = (await response.json()) as OAuthToken
-
-      const token = json['id_token']
+      const token = `${json['token_type']} ${json['access_token']}`
 
       return await this.getProfile(token)
     }

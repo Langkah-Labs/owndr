@@ -11,7 +11,6 @@ export default [
 
   route('signin', './signin/layout.tsx', [
     index('./signin/index.tsx'),
-    route(':provider', './signin/provider.tsx'),
     route(':provider/callback', './signin/callback.tsx'),
   ]),
 

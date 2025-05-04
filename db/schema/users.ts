@@ -13,9 +13,9 @@ export const users = sqliteTable('users', {
   totalReactions: blob('total_reactions', { mode: 'bigint' }).default(sql`(0)`),
   profileScore: real('profile_score').default(0),
   preferredLanguageId: text('preferred_language_id'), // relation to languages table
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deletedAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export const usersRelations = relations(users, ({ one }) => ({
@@ -33,9 +33,9 @@ export const sessions = sqliteTable('sessions', {
   expiresAt: integer('expires_at', {
     mode: 'timestamp',
   }).notNull(),
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deletedAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export type User = InferSelectModel<typeof users>

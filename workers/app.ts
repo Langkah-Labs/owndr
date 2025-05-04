@@ -8,6 +8,13 @@ import Authentication from '~/lib/.server/auth'
 
 declare global {
   interface CloudflareEnvironment extends Env {}
+
+  export interface SessionUser {
+    id: string
+    email: string
+    name: string
+    avatar: string | null
+  }
 }
 
 declare module 'react-router' {
@@ -44,7 +51,7 @@ export function getAuthentication({ context }: GetLoadContextArgs) {
 
 export function getLoadContext({ context }: GetLoadContextArgs) {
   const db = drizzle(context.cloudflare.env.DB, { schema })
-  const cookie = new SessionCookieStorage(context.cloudflare.env)
+  const cookie = SessionCookieStorage.create(context.cloudflare.env)
 
   return {
     cloudflare: context.cloudflare,

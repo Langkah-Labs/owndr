@@ -8,5 +8,7 @@ export const userSchema = z.object({
   email: z.string().email(),
   avatar: z.string().nullish(),
   location: z.string().nullish(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date().nullish(),
   me: z.boolean().nullish(),
 })

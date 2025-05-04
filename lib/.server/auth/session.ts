@@ -1,12 +1,4 @@
 import { createCookieSessionStorage, type SessionStorage } from 'react-router'
-import { THIRTY_DAYS } from './token'
-
-export type SessionUser = {
-  id: string
-  email: string
-  name: string
-  avatar: string
-}
 
 export const SESSION_KEY = 'user'
 
@@ -19,12 +11,7 @@ export interface Storage {
 
 // TODO: this cookie storage class should be freed from infrastructure and framework helpers
 export class SessionCookieStorage implements Storage {
-  private env: CloudflareEnvironment
-  private storage: SessionStorage | null = null
-
-  constructor(env: CloudflareEnvironment) {
-    this.env = env
-  }
+  constructor(private readonly storage: SessionStorage | null) {}
 
   async get(request: Request) {
     if (!this.storage) return null
@@ -66,12 +53,8 @@ export class SessionCookieStorage implements Storage {
     })
   }
 
-  create() {
-    if (this.storage) {
-      return this.storage
-    }
-
-    this.storage = createCookieSessionStorage<{
+  static create(env: CloudflareEnvironment): SessionCookieStorage {
+    const storage = createCookieSessionStorage<{
       [SESSION_KEY]: SessionUser
     }>({
       cookie: {
@@ -79,12 +62,11 @@ export class SessionCookieStorage implements Storage {
         httpOnly: true,
         path: '/',
         sameSite: 'lax',
-        secrets: [this.env.SESSION_SECRET!],
-        secure: this.env.ENVIRONMENT === 'production',
-        expires: THIRTY_DAYS,
+        secrets: [env.SESSION_SECRET!],
+        secure: env.ENVIRONMENT === 'production',
       },
     })
 
-    return this.storage
+    return new SessionCookieStorage(storage)
   }
 }

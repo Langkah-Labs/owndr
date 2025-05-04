@@ -1,5 +1,5 @@
 import { sql, relations, type InferSelectModel } from 'drizzle-orm'
-import { blob, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { blob, real, sqliteTable, text, integer } from 'drizzle-orm/sqlite-core'
 import { destinations } from './destinations'
 import { users } from './users'
 import { languages } from './languages'
@@ -17,9 +17,9 @@ export const posts = sqliteTable('posts', {
   slug: text('slug'),
   userId: text('user_id').notNull(),
   destinationId: text('destination_id').notNull(),
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deletedAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export const postsRelations = relations(posts, ({ one, many }) => ({
@@ -43,9 +43,9 @@ export const postAttachments = sqliteTable('post_attachments', {
   contentType: text('content_type'),
   size: blob('size', { mode: 'bigint' }),
   postId: text('post_id'),
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deletedAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export const postAttachmentsRelations = relations(
@@ -64,9 +64,9 @@ export const postTranslations = sqliteTable('post_translations', {
   body: text('body'),
   postId: text('post_id').notNull(),
   languageId: text('language_id').notNull(),
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deletedAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export const postTranslationsRelations = relations(
@@ -88,9 +88,9 @@ export const postReactions = sqliteTable('post_reactions', {
   postId: text('post_id').notNull(),
   userId: text('user_id').notNull(),
   type: text('type'),
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deletedAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export const postReactionsRelations = relations(postReactions, ({ one }) => ({
@@ -109,9 +109,9 @@ export const comments = sqliteTable('comments', {
   body: text('body'),
   userId: text('user_id').notNull(),
   postId: text('post_id').notNull(),
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deletedAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export const commentsRelations = relations(comments, ({ one }) => ({

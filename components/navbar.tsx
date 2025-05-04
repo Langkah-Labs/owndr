@@ -15,7 +15,6 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 
 import { Form, href, Link } from 'react-router'
-import type { SessionUser } from '~/lib/.server/auth/session'
 
 type NavbarProps = {
   user?: SessionUser
@@ -47,7 +46,7 @@ export function Navbar({ user }: NavbarProps) {
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar className="size-7">
-                <AvatarImage src={user.avatar} />
+                <AvatarImage src={user.avatar ?? undefined} />
                 <AvatarFallback>D</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
