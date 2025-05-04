@@ -1,18 +1,16 @@
-import { sql, relations } from 'drizzle-orm'
+import { sql, relations, type InferSelectModel } from 'drizzle-orm'
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
 
 export const destinations = sqliteTable('destinations', {
-  id: text().primaryKey(),
-  name: text(),
-  thumbnail: text(),
-  categoryId: text(),
-  latitude: text(),
-  longitude: text(),
-  createdAt: text()
-    .notNull()
-    .default(sql`(current_timestamp)`),
-  updatedAt: text(),
-  deletedAt: text(),
+  id: text('id').primaryKey().notNull(),
+  name: text('name'),
+  thumbnail: text('thumbnail'),
+  categoryId: text('categoryId'),
+  latitude: text('latitude'),
+  longitude: text('longitude'),
+  createdAt: text('created_at').default(sql`(current_timestamp)`),
+  updatedAt: text('updated_at'),
+  deletedAt: text('deleted_at'),
 })
 
 export const destinationsRelations = relations(destinations, ({ one }) => ({
@@ -23,14 +21,12 @@ export const destinationsRelations = relations(destinations, ({ one }) => ({
 }))
 
 export const destinationCategories = sqliteTable('destination_categories', {
-  id: text().primaryKey(),
-  name: text().notNull(),
-  icon: text(),
-  createdAt: text()
-    .notNull()
-    .default(sql`(current_timestamp)`),
-  updatedAt: text(),
-  deletedAt: text(),
+  id: text('id').primaryKey().notNull(),
+  name: text('name').notNull(),
+  icon: text('icon'),
+  createdAt: text('created_at').default(sql`(current_timestamp)`),
+  updatedAt: text('updated_at'),
+  deletedAt: text('deleted_at'),
 })
 
 export const destinationsCategoriesRelations = relations(
@@ -39,3 +35,6 @@ export const destinationsCategoriesRelations = relations(
     destinations: many(destinations),
   })
 )
+
+export type Destination = InferSelectModel<typeof destinations>
+export type DestinationCategory = InferSelectModel<typeof destinationCategories>

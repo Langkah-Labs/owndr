@@ -5,11 +5,10 @@
     { "path": "./tsconfig.cloudflare.json" }
   ],
   "compilerOptions": {
-    "allowJs": true,
     "checkJs": true,
+    "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "strict": true,
-    "noEmit": true,
-    "moduleResolution": "bundler"
+    "noEmit": true
   }
 }

@@ -1,25 +1,25 @@
-import { sql, relations } from 'drizzle-orm'
+import { sql, relations, type InferSelectModel } from 'drizzle-orm'
 import { blob, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { destinations } from './destinations'
 import { users } from './users'
 import { languages } from './languages'
 
 export const posts = sqliteTable('posts', {
-  id: text().primaryKey(),
-  title: text(),
-  body: text(),
-  informationScore: real().default(0),
-  totalReactions: blob({ mode: 'bigint' }).default(sql`(0)`),
-  totalThumbsUp: blob({ mode: 'bigint' }).default(sql`(0)`),
-  totalThumbsDown: blob({ mode: 'bigint' }).default(sql`(0)`),
-  slug: text(),
-  userId: text().notNull(),
-  destinationId: text().notNull(),
-  createdAt: text()
-    .notNull()
-    .default(sql`(current_timestamp)`),
-  updatedAt: text(),
-  deletedAt: text(),
+  id: text('id').primaryKey().notNull(),
+  title: text('title'),
+  body: text('body'),
+  informationScore: real('information_score').default(0),
+  totalReactions: blob('total_reactions', { mode: 'bigint' }).default(sql`(0)`),
+  totalThumbsUp: blob('total_thumbs_up', { mode: 'bigint' }).default(sql`(0)`),
+  totalThumbsDown: blob('total_thumbs_down', { mode: 'bigint' }).default(
+    sql`(0)`
+  ),
+  slug: text('slug'),
+  userId: text('user_id').notNull(),
+  destinationId: text('destination_id').notNull(),
+  createdAt: text('created_at').default(sql`(current_timestamp)`),
+  updatedAt: text('updated_at'),
+  deletedAt: text('deleted_at'),
 })
 
 export const postsRelations = relations(posts, ({ one, many }) => ({
@@ -38,16 +38,14 @@ export const postsRelations = relations(posts, ({ one, many }) => ({
 }))
 
 export const postAttachments = sqliteTable('post_attachments', {
-  id: text().primaryKey(),
-  filename: text(),
-  contentType: text(),
-  size: blob({ mode: 'bigint' }),
-  postId: text(),
-  createdAt: text()
-    .notNull()
-    .default(sql`(current_timestamp)`),
-  updatedAt: text(),
-  deletedAt: text(),
+  id: text('id').primaryKey().notNull(),
+  filename: text('filename'),
+  contentType: text('content_type'),
+  size: blob('size', { mode: 'bigint' }),
+  postId: text('post_id'),
+  createdAt: text('created_at').default(sql`(current_timestamp)`),
+  updatedAt: text('updated_at'),
+  deletedAt: text('deleted_at'),
 })
 
 export const postAttachmentsRelations = relations(
@@ -61,16 +59,14 @@ export const postAttachmentsRelations = relations(
 )
 
 export const postTranslations = sqliteTable('post_translations', {
-  id: text().primaryKey(),
-  title: text(),
-  body: text(),
-  postId: text().notNull(),
-  languageId: text().notNull(),
-  createdAt: text()
-    .notNull()
-    .default(sql`(current_timestamp)`),
-  updatedAt: text(),
-  deletedAt: text(),
+  id: text('id').primaryKey().notNull(),
+  title: text('title'),
+  body: text('body'),
+  postId: text('post_id').notNull(),
+  languageId: text('language_id').notNull(),
+  createdAt: text('created_at').default(sql`(current_timestamp)`),
+  updatedAt: text('updated_at'),
+  deletedAt: text('deleted_at'),
 })
 
 export const postTranslationsRelations = relations(
@@ -88,15 +84,13 @@ export const postTranslationsRelations = relations(
 )
 
 export const postReactions = sqliteTable('post_reactions', {
-  id: text().primaryKey(),
-  postId: text().notNull(),
-  userId: text().notNull(),
-  type: text(),
-  createdAt: text()
-    .notNull()
-    .default(sql`(current_timestamp)`),
-  updatedAt: text(),
-  deletedAt: text(),
+  id: text('id').primaryKey().notNull(),
+  postId: text('post_id').notNull(),
+  userId: text('user_id').notNull(),
+  type: text('type'),
+  createdAt: text('created_at').default(sql`(current_timestamp)`),
+  updatedAt: text('updated_at'),
+  deletedAt: text('deleted_at'),
 })
 
 export const postReactionsRelations = relations(postReactions, ({ one }) => ({
@@ -111,15 +105,13 @@ export const postReactionsRelations = relations(postReactions, ({ one }) => ({
 }))
 
 export const comments = sqliteTable('comments', {
-  id: text().primaryKey(),
-  body: text(),
-  userId: text().notNull(),
-  postId: text().notNull(),
-  createdAt: text()
-    .notNull()
-    .default(sql`(current_timestamp)`),
-  updatedAt: text(),
-  deletedAt: text(),
+  id: text('id').primaryKey().notNull(),
+  body: text('body'),
+  userId: text('user_id').notNull(),
+  postId: text('post_id').notNull(),
+  createdAt: text('created_at').default(sql`(current_timestamp)`),
+  updatedAt: text('updated_at'),
+  deletedAt: text('deleted_at'),
 })
 
 export const commentsRelations = relations(comments, ({ one }) => ({
@@ -132,3 +124,9 @@ export const commentsRelations = relations(comments, ({ one }) => ({
     references: [users.id],
   }),
 }))
+
+export type Post = InferSelectModel<typeof posts>
+export type PostAttachment = InferSelectModel<typeof postAttachments>
+export type PostTranslation = InferSelectModel<typeof postTranslations>
+export type PostReaction = InferSelectModel<typeof postReactions>
+export type Comment = InferSelectModel<typeof comments>

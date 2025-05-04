@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 import type { Route } from './+types/root'
 import './app.css'
@@ -41,10 +42,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
   )
 }
 
-export default function App() {
-  return <Outlet />
+export async function loader({ context }: Route.LoaderArgs) {
+  return {
+    google: {
+      clientId: context.cloudflare.env.GOOGLE_CLIENT_ID,
+    },
+  }
 }
 
+export default function App({ loaderData }: Route.ComponentProps) {
+  const { google } = loaderData
+
+  return (
+    <GoogleOAuthProvider clientId={google.clientId}>
+      <Outlet />
+    </GoogleOAuthProvider>
+  )
+}
+
+// any error happens in this application will be delivered to observability dashboard
+// within this ErrorBoundary or inside entry.server.tsx
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = 'Oops!'
   let details = 'An unexpected error occurred.'
