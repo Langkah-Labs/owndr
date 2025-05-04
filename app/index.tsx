@@ -10,7 +10,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader({ request, context }: Route.LoaderArgs) {
-  const user = await authenticate(request)
+  const user = await authenticate(context, request)
 
   return {
     currentUser: user,

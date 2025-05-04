@@ -23,7 +23,7 @@ export async function loader({ context, params, request }: Route.LoaderArgs) {
   // This is necessary data because we use the value immediately after authenticate function called.
   // Since this is HIGH PRIORITY data, me must mark it with await to make sure the data was returned and
   // can be used in the further processing.
-  const currentUser = await authenticate(request)
+  const currentUser = await authenticate(context, request)
 
   // This line of code doesn't mark with await, because it's less priority data.
   // We can defer this data in this loader and show it lazily.

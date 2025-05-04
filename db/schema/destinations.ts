@@ -1,5 +1,5 @@
 import { sql, relations, type InferSelectModel } from 'drizzle-orm'
-import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core'
 
 export const destinations = sqliteTable('destinations', {
   id: text('id').primaryKey().notNull(),
@@ -8,9 +8,9 @@ export const destinations = sqliteTable('destinations', {
   categoryId: text('categoryId'),
   latitude: text('latitude'),
   longitude: text('longitude'),
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deletedAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export const destinationsRelations = relations(destinations, ({ one }) => ({
@@ -24,9 +24,9 @@ export const destinationCategories = sqliteTable('destination_categories', {
   id: text('id').primaryKey().notNull(),
   name: text('name').notNull(),
   icon: text('icon'),
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deletedAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export const destinationsCategoriesRelations = relations(

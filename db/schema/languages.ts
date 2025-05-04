@@ -1,5 +1,5 @@
 import { sql, relations, type InferSelectModel } from 'drizzle-orm'
-import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core'
 import { postTranslations } from './posts'
 import { users } from './users'
 
@@ -8,9 +8,9 @@ export const languages = sqliteTable('languages', {
   name: text('name').notNull(),
   code: text('code').notNull(),
   flag: text('flag').notNull(),
-  createdAt: text('created_at').default(sql`(current_timestamp)`),
-  updatedAt: text('updated_at'),
-  deleteAt: text('deleted_at'),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  deletedAt: integer('deleted_at', { mode: 'timestamp' }),
 })
 
 export const languagesRelations = relations(languages, ({ many }) => ({

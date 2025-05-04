@@ -1,7 +1,7 @@
 import type { Route } from './+types/callback'
 import { redirect } from 'react-router'
 import { users, sessions } from '~/db/schema'
-import { sql } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { SessionToken } from '~/lib/.server/auth/token'
 import { v7 as uuidv7 } from 'uuid'
 import { SESSION_KEY } from '~/lib/.server/auth/session'
@@ -13,12 +13,12 @@ export async function action({ request, params, context }: Route.ActionArgs) {
   const user = await context.authentication.authenticate(provider, formData)
 
   const email = user.email
-  if (!email) redirect('/signin')
-
   const candidateUsers = await context.db
-    .select()
+    .select({
+      id: users.id,
+    })
     .from(users)
-    .where(sql`${users.email} = ${user.email}`)
+    .where(eq(users.email, email))
     .limit(1)
 
   let userId: string | null = null
@@ -29,6 +29,7 @@ export async function action({ request, params, context }: Route.ActionArgs) {
       firstName: user.name ?? '',
       email: user.email ?? '',
       avatar: user.picture ?? null,
+      createdAt: new Date(Date.now()),
     }
 
     await context.db.insert(users).values(newUser)
@@ -44,6 +45,7 @@ export async function action({ request, params, context }: Route.ActionArgs) {
     id: sessionId,
     userId,
     expiresAt: token.getExpiresAt(),
+    createdAt: new Date(Date.now()),
   }
   await context.db.insert(sessions).values(session)
 

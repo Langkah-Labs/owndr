@@ -82,7 +82,7 @@ export const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
     cell: ({ row }) => {
       const lastName = row.getValue('lastName')
 
-      if (lastName === '') {
+      if (lastName === '' || lastName === null) {
         return '-'
       } else {
         return lastName
@@ -101,7 +101,11 @@ export const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
       return <DataTableColumnHeader column={column} title="Created At" />
     },
     cell: ({ row }) => {
-      const createdAt = new Date(row.getValue('createdAt'))
+      const createdAt = row.getValue('createdAt') as Date | null
+
+      if (!createdAt) {
+        return '-'
+      }
 
       return new Intl.DateTimeFormat('en-US').format(createdAt)
     },
@@ -112,7 +116,11 @@ export const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
       return <DataTableColumnHeader column={column} title="Updated At" />
     },
     cell: ({ row }) => {
-      const updatedAt = new Date(row.getValue('updatedAt'))
+      const updatedAt = row.getValue('updatedAt') as Date | null
+
+      if (!updatedAt) {
+        return '-'
+      }
 
       return new Intl.DateTimeFormat('en-US').format(updatedAt)
     },

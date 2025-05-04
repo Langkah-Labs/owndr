@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   commands:
     prettier:
-      run: bunx pretty-quick --staged --ignore-path .gitignore
+      run: npx pretty-quick --staged --ignore-path .gitignore
 
     typecheck:
-      run: bun run typecheck
+      run: npm run typecheck

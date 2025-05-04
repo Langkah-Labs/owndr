@@ -2,9 +2,9 @@ CREATE TABLE `destination_categories` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`icon` text,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE TABLE `destinations` (
@@ -14,9 +14,9 @@ CREATE TABLE `destinations` (
 	`categoryId` text,
 	`latitude` text,
 	`longitude` text,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE TABLE `comments` (
@@ -24,9 +24,9 @@ CREATE TABLE `comments` (
 	`body` text,
 	`user_id` text NOT NULL,
 	`post_id` text NOT NULL,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE TABLE `languages` (
@@ -34,9 +34,9 @@ CREATE TABLE `languages` (
 	`name` text NOT NULL,
 	`code` text NOT NULL,
 	`flag` text NOT NULL,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE TABLE `post_attachments` (
@@ -45,9 +45,9 @@ CREATE TABLE `post_attachments` (
 	`content_type` text,
 	`size` blob,
 	`post_id` text,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE TABLE `post_reactions` (
@@ -55,9 +55,9 @@ CREATE TABLE `post_reactions` (
 	`post_id` text NOT NULL,
 	`user_id` text NOT NULL,
 	`type` text,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE TABLE `post_translations` (
@@ -66,9 +66,9 @@ CREATE TABLE `post_translations` (
 	`body` text,
 	`post_id` text NOT NULL,
 	`language_id` text NOT NULL,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE TABLE `posts` (
@@ -82,18 +82,18 @@ CREATE TABLE `posts` (
 	`slug` text,
 	`user_id` text NOT NULL,
 	`destination_id` text NOT NULL,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE TABLE `sessions` (
 	`id` text PRIMARY KEY NOT NULL,
 	`user_id` text NOT NULL,
 	`expires_at` integer NOT NULL,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text,
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer,
 	FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
@@ -102,9 +102,9 @@ CREATE TABLE `system_configurations` (
 	`key` text NOT NULL,
 	`description` text,
 	`value` text NOT NULL,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `system_configurations_key_unique` ON `system_configurations` (`key`);--> statement-breakpoint
@@ -119,9 +119,9 @@ CREATE TABLE `users` (
 	`total_reactions` blob DEFAULT (0),
 	`profile_score` real DEFAULT 0,
 	`preferred_language_id` text,
-	`created_at` text DEFAULT (current_timestamp),
-	`updated_at` text,
-	`deleted_at` text
+	`created_at` integer,
+	`updated_at` integer,
+	`deleted_at` integer
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `users_email_unique` ON `users` (`email`);
