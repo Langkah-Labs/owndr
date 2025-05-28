@@ -71,6 +71,7 @@ export default function Index() {
                   size="md"
                   className="flex items-center gap-2 rounded-lg border border-[#bbd5b4] text-[#59824e] text-sm cursor-pointer hover:opacity-40 duration-300"
                 >
+                  <span className="sr-only">Valid</span>
                   <FaCircleCheck />
                 </Button>
                 <Button
@@ -78,6 +79,7 @@ export default function Index() {
                   size="md"
                   className="flex items-center gap-2 rounded-lg border border-[#ffafcc] text-[#ea598e] text-sm cursor-pointer hover:opacity-40 duration-300"
                 >
+                  <span className="sr-only">Not Valid</span>
                   <FaCircleXmark />
                 </Button>
                 <Button
@@ -86,6 +88,7 @@ export default function Index() {
                   size="md"
                   className="flex items-center gap-2 rounded-lg border border-[#acb0b7] text-[#63728c] text-sm cursor-pointer hover:opacity-40 duration-300"
                 >
+                  <span className="sr-only">Comment</span>
                   <FaCommentDots />
                 </Button>
               </div>

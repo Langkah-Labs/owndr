@@ -16,5 +16,7 @@ export default [
 
   route('landing', './landing/layout.tsx', [index('./landing/index.tsx')]),
 
+  route('feed', './feed/layout.tsx', [index('./feed/index.tsx')]),
+
   route('signout', './signout/index.tsx'),
 ] satisfies RouteConfig
