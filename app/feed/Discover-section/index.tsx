@@ -15,12 +15,12 @@ export default function Index() {
         <div className="w-2 h-6 bg-[#103f66]"></div>
         <h2 className="font-semibold text-2xl">Discover More</h2>
       </div>
-      <div className="flex items-start justify-center gap-4 w-full md:flex-col sm:flex-col xs:flex-col md:gap-8 sm:gap-8 xs:gap-8">
+      <div className="flex items-start justify-center gap-4 w-full">
         <div className="flex flex-col gap-2">
           <img
             src="https://images.lbc.co.uk/images/670512?width=3537&crop=16_9&signature=fnMovhPozRL5gtbuGuScmXYx0ek="
             alt="traffic_picture"
-            className="rounded-lg w-[38rem] h-72 object-cover md:w-full sm:w-full xs:w-full"
+            className="rounded-lg w-[38rem] h-72 object-cover"
             width={100}
             height={100}
           />
@@ -41,10 +41,10 @@ export default function Index() {
               <IoLocationSharp size={12} />
               <span className="text-xs font-semibold">Rammang-rammang</span>
             </NavLink>
-            <h2 className="text-3xl font-semibold sm:text-xl xs:text-xl">
+            <h2 className="text-3xl font-semibold">
               Lorem ipsum dolor sit amet
             </h2>
-            <h5 className="sm:text-xs xs:text-xs">
+            <h5>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </h5>
@@ -52,17 +52,17 @@ export default function Index() {
               <ProgressBar />
             </div>
             <div className="flex items-center gap-2 mt-4">
-              <Button className="flex items-center gap-2 rounded-lg border border-[#bbd5b4] text-[#59824e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300 sm:text-xs xs:text-xs">
+              <Button className="flex items-center gap-2 rounded-lg border border-[#bbd5b4] text-[#59824e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300">
                 <FaCircleCheck />
                 Valid
               </Button>
-              <Button className="flex items-center gap-2 rounded-lg border border-[#ffafcc] text-[#ea598e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300 sm:text-xs xs:text-xs">
+              <Button className="flex items-center gap-2 rounded-lg border border-[#ffafcc] text-[#ea598e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300">
                 <FaCircleXmark />
                 Not Valid
               </Button>
               <Button
                 onPress={() => isCommentOpenHandler('1')}
-                className="flex items-center gap-2 rounded-lg border border-[#acb0b7] text-[#63728c] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300 sm:text-xs xs:text-xs"
+                className="flex items-center gap-2 rounded-lg border border-[#acb0b7] text-[#63728c] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300"
               >
                 <FaCommentDots />
                 Comment
@@ -70,14 +70,14 @@ export default function Index() {
             </div>
           </div>
         </div>
-        <div className="flex gap-4 flex-wrap w-8/12 md:w-full sm:w-full xs:w-full md:gap-6 sm:gap-6 xs:gap-6">
+        <div className="flex gap-4 flex-wrap w-8/12">
           {discover_dummy.map((item) => (
-            <div className="flex justify-start gap-2 w-72">
+            <div className="flex justify-start gap-2">
               <div>
                 <img
                   src={item.img_src}
                   alt={item.img_alt}
-                  className="w-80 h-40 rounded-lg object-cover sm:w-96 xs:w-96"
+                  className="h-40 rounded-lg object-cover"
                   width={100}
                   height={100}
                 />
@@ -115,17 +115,17 @@ export default function Index() {
                   <ProgressBar />
                 </div>
                 <div className="flex items-center gap-2 mt-2">
-                  <Button className="flex items-center gap-2 rounded-lg border border-[#bbd5b4] text-[#59824e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300 sm:text-xs xs:text-xs">
+                  <Button className="flex items-center gap-2 rounded-lg border border-[#bbd5b4] text-[#59824e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300">
                     <span className="sr-only">Valid</span>
                     <FaCircleCheck />
                   </Button>
-                  <Button className="flex items-center gap-2 rounded-lg border border-[#ffafcc] text-[#ea598e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300 sm:text-xs xs:text-xs">
+                  <Button className="flex items-center gap-2 rounded-lg border border-[#ffafcc] text-[#ea598e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300">
                     <span className="sr-only">Not Valid</span>
                     <FaCircleXmark />
                   </Button>
                   <Button
                     onPress={() => isCommentOpenHandler('1')}
-                    className="flex items-center gap-2 rounded-lg border border-[#acb0b7] text-[#63728c] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300 sm:text-xs xs:text-xs"
+                    className="flex items-center gap-2 rounded-lg border border-[#acb0b7] text-[#63728c] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300"
                   >
                     <span className="sr-only">Comment</span>
                     <FaCommentDots />

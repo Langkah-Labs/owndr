@@ -33,7 +33,7 @@ export default function Index() {
         <div className="w-full border-t border-gray-300 " />
       </div> */}
       {feed_dummy_data.map((item) => (
-        <div className="w-full border border-[#E6DFF1] rounded-xl py-4 px-8 flex flex-col gap-2 shadow-md sm:px-4 xs:px-4">
+        <div className="w-full border border-[#E6DFF1] rounded-xl py-4 px-8 flex flex-col gap-2 shadow-md">
           <img
             src={item.img_src}
             alt={item.img_alt}
@@ -51,9 +51,7 @@ export default function Index() {
             </NavLink>
             <span className="text-xs text-slate-400">{item.created_at}</span>
           </div>
-          <h2 className="text-3xl font-semibold sm:text-xl xs:text-xl">
-            {item.title}
-          </h2>
+          <h2 className="text-3xl font-semibold">{item.title}</h2>
           <NavLink
             to={`/destination/${item.place_name
               .replace(/[\s-]/g, '')
@@ -74,17 +72,17 @@ export default function Index() {
             <ProgressBar />
           </div>
           <div className="flex items-center gap-2 mt-2">
-            <Button className="flex items-center gap-2 rounded-lg border border-[#bbd5b4] text-[#59824e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300 sm:text-xs xs:text-xs">
+            <Button className="flex items-center gap-2 rounded-lg border border-[#bbd5b4] text-[#59824e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300">
               <FaCircleCheck />
               Valid
             </Button>
-            <Button className="flex items-center gap-2 rounded-lg border border-[#ffafcc] text-[#ea598e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300 sm:text-xs xs:text-xs">
+            <Button className="flex items-center gap-2 rounded-lg border border-[#ffafcc] text-[#ea598e] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300">
               <FaCircleXmark />
               Not Valid
             </Button>
             <Button
               onPress={() => isCommentOpenHandler('1')}
-              className="flex items-center gap-2 rounded-lg border border-[#acb0b7] text-[#63728c] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300 sm:text-xs xs:text-xs"
+              className="flex items-center gap-2 rounded-lg border border-[#acb0b7] text-[#63728c] text-sm px-3 py-2 cursor-pointer hover:opacity-40 duration-300"
             >
               <FaCommentDots />
               Comment
