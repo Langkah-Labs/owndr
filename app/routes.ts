@@ -14,5 +14,9 @@ export default [
     route(':provider/callback', './signin/callback.tsx'),
   ]),
 
+  route('landing', './landing/layout.tsx', [index('./landing/index.tsx')]),
+
+  route('about', './about/layout.tsx', [index('./about/index.tsx')]),
+
   route('signout', './signout/index.tsx'),
 ] satisfies RouteConfig
