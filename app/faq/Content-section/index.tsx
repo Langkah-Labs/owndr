@@ -52,9 +52,9 @@ const faqs = [
 export default function Example() {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-16 max-[650px]:px-8 max-[650px]:py-24 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 max-[650px]:text-5xl">
             Frequently asked questions
           </h2>
           <p className="mt-6 text-base/7 text-gray-600">
@@ -71,7 +71,7 @@ export default function Example() {
         </div>
 
         {/* Grid container fix */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-12">
           {faqs.map((faq) => (
             <div key={faq.id} className="flex flex-col items-start">
               <dt className="text-base/7 font-semibold text-gray-900">
