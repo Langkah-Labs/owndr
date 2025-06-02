@@ -8,7 +8,7 @@ export default function Index() {
 
   return (
     <div className="flex flex-1 flex-col justify-center items-center">
-      <div className="bg-white fixed px-12 py-2 w-5/12 h-[32rem] rounded-2xl">
+      <div className="bg-white fixed px-12 py-2 w-10/12 h-[32rem] rounded-2xl">
         <button
           onClick={() => isContentFormOpenHandler(false)}
           className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
@@ -38,13 +38,13 @@ export default function Index() {
                     Title
                   </label>
                   <div className="mt-2">
-                    <div className="flex items-center rounded-md bg-white pl-3 outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-[#103f66]">
+                    <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-[#103f66]">
                       <input
                         id="username"
                         name="username"
                         type="text"
                         placeholder="janesmith"
-                        className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0"
+                        className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-0"
                       />
                     </div>
                   </div>
@@ -62,7 +62,7 @@ export default function Index() {
                       id="about"
                       name="about"
                       rows={3}
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#103f66]"
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#103f66]"
                       defaultValue={''}
                     />
                   </div>
@@ -99,12 +99,12 @@ export default function Index() {
                     Location
                   </label>
                   <div className="mt-2">
-                    <div className="flex items-center rounded-md bg-white pl-3 outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-[#103f66]">
+                    <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-[#103f66]">
                       <input
                         id="search"
                         name="search"
                         type="text"
-                        className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0"
+                        className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-0"
                       />
                       <div className="flex py-1.5 pr-1.5">
                         <kbd className="inline-flex items-center rounded-sm border border-gray-200 p-1 font-sans text-xs text-gray-400">
@@ -163,7 +163,7 @@ export default function Index() {
             </button>
             <button
               type="submit"
-              className="rounded-md bg-[#103f66] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-40 duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#103f66]"
+              className="rounded-md bg-[#103f66] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-40 duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#103f66]"
             >
               Save
             </button>
