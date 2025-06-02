@@ -8,12 +8,12 @@ export default function index() {
       <div className="pt-8">
         <Navbar />
       </div>
-      <div className="flex px-36 justify-center mt-24">
+      <div className="flex px-36 justify-center mt-24 xs:px-16 xs:mt-12 sm:mt-32">
         <div className="flex flex-col items-start justify-center gap-4">
-          <span className="text-4xl font-bold tracking-wide">
+          <span className="text-4xl font-bold tracking-wide xs:text-3xl">
             Find your truth wander
           </span>
-          <span className="text-sm">
+          <span className="text-sm xs:text-xs">
             Experience the freedom to explore with confidence. Our platform
             empowers you to plan trips effortlessly, find destinations that
             resonate with your style, and make every journey a true reflection
@@ -21,7 +21,7 @@ export default function index() {
           </span>
           <NavLink
             to="/feed"
-            className="bg-[#ea598e] text-white rounded-lg px-4 py-1 hover:opacity-40 duration-300"
+            className="bg-[#ea598e] text-white rounded-lg px-4 py-1 hover:opacity-40 duration-300 xs:text-xs"
           >
             Explore Posts &#8594;
           </NavLink>

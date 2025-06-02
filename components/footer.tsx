@@ -65,7 +65,7 @@ const navigation = {
 export default function Index() {
   return (
     <div>
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-6 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-2xl text-center pt-8 pb-24">
           <hgroup>
             <h2 className="text-base/7 font-semibold text-[#103f66]">
@@ -90,7 +90,7 @@ export default function Index() {
         </div>
       </div>
       <footer className="bg-gray-900">
-        <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20">
+        <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
           <nav
             aria-label="Footer"
             className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6"

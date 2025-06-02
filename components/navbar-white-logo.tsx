@@ -135,7 +135,7 @@ export default function Index() {
                   <Button
                     color="primary"
                     // onPress={() => isSignupOpenHandler(true)}
-                    className="flex items-center border border-[#ffafcc] text-[#ea598e] rounded-lg py-1 px-4 hover:opacity-40 duration-300"
+                    className="flex items-center border border-[#ffafcc] text-[#ea598e] bg-transparent rounded-lg py-1 px-4 hover:opacity-40 duration-300"
                   >
                     <FaUserCircle />
                     Sign up
