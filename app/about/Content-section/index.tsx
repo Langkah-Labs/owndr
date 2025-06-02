@@ -96,13 +96,13 @@ export default function Index() {
             />
           </div>
           <div className="overflow-hidden">
-            <div className="mx-auto max-w-7xl px-6 pb-32 sm:pt-28 xs:pt-28 md:pt-28 lg:px-8 lg:pt-18">
+            <div className="mx-auto max-w-7xl px-6 pb-32 max-[1024px]:pt-28 lg:px-8 lg:pt-18">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl">
-                  <h1 className="text-pretty text-5xl font-semibold tracking-tight text-[#103f66] sm:text-4xl xs:text-4xl">
+                  <h1 className="text-pretty text-5xl font-semibold tracking-tight text-[#103f66] max-[650px]:text-4xl">
                     Revolutionizing the Way People Explore Destinations
                   </h1>
-                  <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:max-w-md sm:text-base xs:text-base lg:max-w-none">
+                  <p className="mt-8 text-pretty text-lg font-medium text-gray-500 max-[650px]:max-w-md max-[650px]:text-base lg:max-w-none">
                     We believe that every journey should be guided by authentic,
                     community-driven insights. Our platform empowers travelers
                     to share real experiences, connect with like-minded
@@ -112,8 +112,8 @@ export default function Index() {
                     reflects the true essence of every place.
                   </p>
                 </div>
-                <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
-                  <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+                <div className="mt-14 flex justify-end gap-8 lg:mt-0 lg:pl-0">
+                  <div className="ml-auto w-44 flex-none space-y-8 pt-32 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                     <div className="relative">
                       <img
                         alt=""
@@ -123,7 +123,7 @@ export default function Index() {
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
                   </div>
-                  <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 xs:mr-0 sm:pt-52 lg:pt-36">
+                  <div className="mr-auto w-44 flex-none space-y-8 lg:pt-36">
                     <div className="relative">
                       <img
                         alt=""
@@ -148,19 +148,19 @@ export default function Index() {
         </div>
 
         {/* Content section */}
-        <div className="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 xs:mt-0 lg:px-8 xl:-mt-8">
+        <div className="mx-auto -mt-12 max-w-7xl px-6 max-[650px]:mt-0 lg:px-8 xl:-mt-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none text-center flex flex-col items-center">
             <h2 className="text-pretty text-4xl font-semibold tracking-tight text-[#103f66]">
               Our mission
             </h2>
             <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
               <div className="flex flex-col items-center">
-                <p className="text-2xl text-gray-600 sm:text-lg xs:text-lg">
+                <p className="text-2xl text-gray-600 max-[650px]:text-lg">
                   Our mission is to bridge the gap between travelers and
                   reliable information, ensuring that every journey is backed by
                   real experiences, not just marketing hype.
                 </p>
-                <p className="mt-10 max-w-xl text-base/7 sm:text-sm xs:text-sm text-gray-700">
+                <p className="mt-10 max-w-xl text-base/7 max-[650px]:text-sm text-gray-700">
                   By leveraging user-generated content, interactive scoring
                   systems, and community validation, we empower travelers to
                   make informed decisions about their destinations. Whether
@@ -191,7 +191,7 @@ export default function Index() {
         </div>
 
         {/* Image section */}
-        <div className="mt-32 sm:mt-12 xs:mt-12 xl:mx-auto xl:max-w-7xl xl:px-8">
+        <div className="mt-32 max-[650px]:mt-12 xl:mx-auto xl:max-w-7xl xl:px-8">
           <img
             alt=""
             src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
@@ -205,13 +205,13 @@ export default function Index() {
             <h2 className="text-pretty text-4xl font-semibold tracking-tight text-[#103f66]">
               Our values
             </h2>
-            <p className="mt-6 text-lg/8 text-gray-600 sm:text-lg xs:text-lg">
+            <p className="mt-6 text-lg/8 text-gray-600 max-[650px]:text-lg">
               Our values guide everything we do, ensuring that travelers and
               explorers can rely on real experiences, verified information, and
               meaningful connections.
             </p>
           </div>
-          <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base/7 sm:text-base xs:text-base sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base/7 max-[650px]:text-base max-[650px]:gap-y-4 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {values.map((value) => (
               <div key={value.name}>
                 <dt className="font-semibold text-gray-900">{value.name}</dt>
