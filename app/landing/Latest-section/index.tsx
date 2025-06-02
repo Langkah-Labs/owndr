@@ -11,20 +11,20 @@ export default function Index() {
   const isCommentOpenHandler = useStore(setIsCommentOpen)
 
   return (
-    <div className="flex flex-col mb-12 px-36 xs:px-8">
-      <div className="flex justify-between items-start xs:flex-col sm:flex-col xs:gap-2 sm:gap-2">
+    <div className="flex flex-col mb-12 px-36 max-[650px]:px-8">
+      <div className="flex justify-between items-start max-[650px]:flex-col max-[1024px]:flex-col max-[650px]:gap-2 max-[1024px]:gap-2">
         <div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-6 bg-[#103f66]"></div>
             <h2 className="font-semibold text-2xl">Latest Feed</h2>
           </div>
-          <h5 className="xs:text-xs">
+          <h5 className="max-[650px]:text-xs">
             Stay updated with the latest posts, updates, and activities
             happening right now. Explore what's trending and never miss a beat.
           </h5>
         </div>
       </div>
-      <div className="mt-4 flex gap-6 items-center justify-center xs:flex-wrap sm:flex-wrap">
+      <div className="mt-4 flex gap-6 items-center justify-center max-[650px]:flex-wrap max-[1024px]:flex-wrap">
         {popular_dummy.map((item) => (
           <div className="w-48 flex flex-col gap-2">
             {/* Image */}
@@ -60,7 +60,7 @@ export default function Index() {
                 <IoLocationSharp size={12} />
                 <span className="text-xs font-semibold">{item.place_name}</span>
               </NavLink>
-              <h2 className="text-lg font-semibold xs:text-base">
+              <h2 className="text-lg font-semibold max-[650px]:text-base">
                 {item.title}
               </h2>
               <h5 className="text-xs">{item.desc}</h5>
@@ -71,14 +71,14 @@ export default function Index() {
                 <Button
                   isIconOnly
                   size="md"
-                  className="flex items-center gap-2 rounded-lg border border-[#bbd5b4] text-[#59824e] text-sm cursor-pointer hover:opacity-40 duration-300 xs:text-xs"
+                  className="flex items-center gap-2 rounded-lg border border-[#bbd5b4] text-[#59824e] text-sm cursor-pointer hover:opacity-40 duration-300 max-[650px]:text-xs"
                 >
                   <FaCircleCheck />
                 </Button>
                 <Button
                   isIconOnly
                   size="md"
-                  className="flex items-center gap-2 rounded-lg border border-[#ffafcc] text-[#ea598e] text-sm cursor-pointer hover:opacity-40 duration-300 xs:text-xs"
+                  className="flex items-center gap-2 rounded-lg border border-[#ffafcc] text-[#ea598e] text-sm cursor-pointer hover:opacity-40 duration-300 max-[650px]:text-xs"
                 >
                   <FaCircleXmark />
                 </Button>
@@ -86,7 +86,7 @@ export default function Index() {
                   onPress={() => isCommentOpenHandler('1')}
                   isIconOnly
                   size="md"
-                  className="flex items-center gap-2 rounded-lg border border-[#acb0b7] text-[#63728c] text-sm cursor-pointer hover:opacity-40 duration-300 xs:text-xs"
+                  className="flex items-center gap-2 rounded-lg border border-[#acb0b7] text-[#63728c] text-sm cursor-pointer hover:opacity-40 duration-300 max-[650px]:text-xs"
                 >
                   <FaCommentDots />
                 </Button>

@@ -6,18 +6,18 @@ export default function Index() {
 
   return (
     <div className="w-full">
-      <div className="flex flex-col mb-12 px-36 xs:px-8">
+      <div className="flex flex-col mb-12 px-36 max-[650px]:px-8">
         <div className="flex flex-col items-center justify-center">
           <h2 className="font-semibold text-2xl">
             Discover the most sought-after destinations curated by our
             community!
           </h2>
-          <h5 className="xs:text-xs">
+          <h5 className="max-[650px]:text-xs">
             Our Top Listed Destinations are ranked based on destination scores,
             reflecting the collective insights of travelers just like you.
           </h5>
         </div>
-        <div className="mt-4 flex gap-6 items-center justify-center xs:flex-wrap sm:flex-wrap">
+        <div className="mt-4 flex gap-6 items-center justify-center max-[650px]:flex-wrap max-[1024px]:flex-wrap">
           {popular_places_dummy.map((item) => (
             <div className="relative w-48 h-48">
               {/* Image */}
