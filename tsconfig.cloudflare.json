@@ -11,7 +11,9 @@
     "lib/**/.client/**/*",
     "workers/**/*",
     "worker-configuration.d.ts",
-    "db/**/*"
+    "db/**/*",
+    "utils/**/*.ts",
+    "stores/**/*.ts"
   ],
   "compilerOptions": {
     "composite": true,
