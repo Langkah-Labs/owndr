@@ -2,8 +2,6 @@ import { NavLink } from 'react-router'
 import { popular_places_dummy } from '~/utils/contants'
 
 export default function Index() {
-  console.log(popular_places_dummy)
-
   return (
     <div className="w-full">
       <div className="flex flex-col mb-12 px-36 max-[650px]:px-8">
